@@ -1,7 +1,8 @@
 import { INCREASE_ENTHUSIASM, DECREASE_ENTHUSIASM } from '../constants';
 import { EnthusiasmAction} from '../actions/helloActions';
+import { HelloStore } from '../types'
 
-const HelloReducer = (state: { enthusiasmLevel: 1}, action: EnthusiasmAction) => {
+const HelloReducer = (state: HelloStore = { enthusiasmLevel: 1}, action: EnthusiasmAction) => {
     switch(action.type) {
         case INCREASE_ENTHUSIASM:
             return {...state, enthusiasmLevel: state.enthusiasmLevel + 1};

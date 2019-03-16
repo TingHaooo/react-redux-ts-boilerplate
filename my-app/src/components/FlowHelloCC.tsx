@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
 import { StoreState } from '../store/types'
 import * as helloActions from '../store/actions/helloActions'
 
 interface Props {
     name: string,
     enthusiasmLevel?: number
-    incEnthusiasmLevel?: () => void,
-    decEnthusiasmLevel?: () => void
+    incEnthusiasmLevel: () => void,
+    decEnthusiasmLevel: () => void
 }
 
 class FlowHelloCC extends React.Component<Props> {
@@ -35,7 +35,7 @@ const mapStateToProps = (state: StoreState) => {
     })
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<helloActions.EnthusiasmAction>) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<StoreState, undefined, helloActions.EnthusiasmAction>) => {
     return ({
         incEnthusiasmLevel: () => dispatch(helloActions.increaseEnthusiasm()),
         decEnthusiasmLevel: () => dispatch(helloActions.decreaseEnthusiasm())
