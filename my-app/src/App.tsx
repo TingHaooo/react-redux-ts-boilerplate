@@ -5,7 +5,7 @@ class App extends React.Component {
   public render() {
     return (
       <div className="App">
-        <FlowHelloCC name="Jason"/>
+        <FlowHelloCC />
       </div>
     );
   }

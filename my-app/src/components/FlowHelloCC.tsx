@@ -5,13 +5,18 @@ import { StoreState } from '../store/types'
 import * as helloActions from '../store/actions/helloActions'
 
 interface Props {
-    name: string,
+    name: undefined | string,
     enthusiasmLevel?: number
     incEnthusiasmLevel: () => void,
-    decEnthusiasmLevel: () => void
+    decEnthusiasmLevel: () => void,
+    getUserName: () => void
 }
 
 class FlowHelloCC extends React.Component<Props> {
+
+    componentDidMount() {
+        this.props.getUserName()
+    }
 
     render() {
         const { incEnthusiasmLevel, decEnthusiasmLevel, enthusiasmLevel} = this.props;
@@ -19,7 +24,7 @@ class FlowHelloCC extends React.Component<Props> {
         return (
             <div className="Hello">
                 <div className="greeting">
-                    Hello {this.props.name + getExclamanationMarks(enthusiasmLevel || 1)}
+                    Hello {(this.props.name || "") + getExclamanationMarks(enthusiasmLevel || 1)}
                 </div>
                 <button className="enthusiasm-btn" onClick={incEnthusiasmLevel}>+</button>
                 <button className="enthusiasm-btn" onClick={decEnthusiasmLevel}>-</button>
@@ -31,14 +36,16 @@ class FlowHelloCC extends React.Component<Props> {
 const mapStateToProps = (state: StoreState) => {
     console.log(state)
     return ({
-        enthusiasmLevel: state.helloStore.enthusiasmLevel
+        enthusiasmLevel: state.helloStore.enthusiasmLevel,
+        name: state.helloStore.name
     })
 };
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<StoreState, undefined, helloActions.EnthusiasmAction>) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<StoreState, undefined, helloActions.EnthusiasmAction | helloActions.UserAction>) => {
     return ({
         incEnthusiasmLevel: () => dispatch(helloActions.increaseEnthusiasm()),
-        decEnthusiasmLevel: () => dispatch(helloActions.decreaseEnthusiasm())
+        decEnthusiasmLevel: () => dispatch(helloActions.decreaseEnthusiasm()),
+        getUserName: () => dispatch(helloActions.getUserName())
     });
 };
 
