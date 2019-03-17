@@ -29,7 +29,7 @@ type MyThunkAction<R> = ThunkAction<R, StoreState, undefined, Action>
 
 const USER_URL = "https://jsonplaceholder.typicode.com/users";
 
-export const getUserName= (): MyThunkAction<void> => async (dispatch) => { 
+export const getUserName= (): MyThunkAction<void> => async (dispatch)  => { 
     try {
         let users = await axios.get(USER_URL);
         dispatch({type: GET_USERNAME, userName: users.data[0].name});
