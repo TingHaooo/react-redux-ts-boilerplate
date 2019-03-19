@@ -1,11 +1,11 @@
 import * as React from 'react';
-import FlowHelloCC from './components/FlowHelloCC'
+import HooksFlowHelloCC from './components/HooksFlowHelloCC'
 
 class App extends React.Component {
   public render() {
     return (
       <div className="App">
-        <FlowHelloCC />
+        <HooksFlowHelloCC />
       </div>
     );
   }
