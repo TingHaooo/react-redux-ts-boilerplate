@@ -24,7 +24,7 @@ class FlowHelloCC extends React.Component<Props> {
         return (
             <div className="Hello">
                 <div className="greeting">
-                    Hello {(this.props.name || "") + getExclamanationMarks(enthusiasmLevel || 1)}
+                    Hello {(this.props.name || "Loading") + getExclamanationMarks(enthusiasmLevel || 1)}
                 </div>
                 <button className="enthusiasm-btn" onClick={incEnthusiasmLevel}>+</button>
                 <button className="enthusiasm-btn" onClick={decEnthusiasmLevel}>-</button>
